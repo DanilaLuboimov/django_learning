@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый блог</title>
+</head>
+<body>
+<div align="center">
+    <a href="{% url 'main' %}">На главную</a>
+</div>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form_article.title.label }}<br>
+    {{ form_article.title }}<br>
+    {{ form_article.description.label }}<br>
+    {{ form_article.description }}<br>
+    {{ form_article.file.label }}<br>
+    {{ form_article.file }}<br><br>
+    <button type="submit">Опубликовать</button>
+</form>
+</body>
+</html>

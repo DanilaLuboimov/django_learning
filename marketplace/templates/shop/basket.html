@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Корзина{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+<h3>Ваша корзина:</h3>
+{% for p in products %}
+    {{ p.product.product.name }} {{ p.product.price }} рублей<br>
+    <small>{{ p.product.store.name }}</small><br><br>
+{% endfor %}
+<h3>Общая стоимость {{ sum_price|default:0 }} рублей</h3>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Оплатить</button>
+</form>
+{% endblock %}
+</body>
+</html>

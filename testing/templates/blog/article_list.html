@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Блоги</title>
+</head>
+<body>
+<p align="center">
+    <a href="{% url 'main' %}">На главную</a>
+</p>
+{% for article in articles %}
+    <a href="{% url 'articles' %}{{ article.id }}"><big>{{ article.title }}</big><br></a>
+    Автор: {{ article.author }}<br>
+    <small>{{ article.created_at }}</small><br>
+    {{ article.description|slice:":100" }}<br><br>
+{% endfor %}
+</body>
+</html>

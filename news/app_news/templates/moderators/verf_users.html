@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Новые пользователи</title>
+</head>
+<body>
+<div>
+     <div align="center"><a href="{% url 'main' %}">Главная страница</a></div>
+    <div align="left">
+        Список пользователей на верификацию:
+    </div>
+    <br><br>
+    <table>
+        {% for form in forms %}
+            <tr>
+            <form method="post">
+                {% csrf_token %}
+                <th>
+                {{ form.user }}
+                {{ form.is_verification.label }}
+                </th><td>
+                <input type="submit" name="is_verification" value="Верифицировать">
+                </td>
+            </form>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>

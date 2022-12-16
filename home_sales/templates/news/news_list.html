@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Новости{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+<div>
+    {% for n in news %}
+        <a href="{% url 'news_detail' n.id %}"><h3>{{ n.title }}</h3></a>
+        <small>{{ n.date_created }}</small><br>
+        {{ n.description }}<br>
+    {% endfor %}
+</div>
+{% endblock %}
+</body>
+</html>

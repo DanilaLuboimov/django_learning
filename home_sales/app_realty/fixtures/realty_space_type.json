@@ -1,0 +1,16 @@
+[
+{
+    "model": "app_realty.spacetype",
+    "pk": 1,
+    "fields": {
+        "space_type": "1"
+    }
+},
+{
+    "model": "app_realty.spacetype",
+    "pk": 2,
+    "fields": {
+        "space_type": "2"
+    }
+}
+]

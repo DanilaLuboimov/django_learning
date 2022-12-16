@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Загрузка CSV</title>
+</head>
+<body>
+<p align="center">
+    <a href="{% url 'main' %}">На главную</a>
+</p>
+<h4>Опубликовать сразу несколько блогов</h4>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_div }}
+    <button type="submit">Опубликовать</button>
+</form>
+</body>
+</html>

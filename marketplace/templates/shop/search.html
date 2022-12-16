@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Поиск товаров{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+<input type="text" id="input" onkeyup="func()"
+       placeholder="Введите наименование товара" autofocus size="40">
+<ul id="list">
+    {% for product in products %}
+        <li><a href="{% url 'search' %}{{ product.id }}">{{ product.name }}</a></li>
+    {% endfor %}
+</ul>
+
+<script>
+function func() {
+    var input, filter, ul, li, a, i, txtValue;
+    input = document.getElementById('input');
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("list");
+    li = ul.getElementsByTagName('li');
+
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+</script>
+{% endblock %}
+</body>
+</html>

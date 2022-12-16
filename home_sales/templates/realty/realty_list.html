@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Недвижимость{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+{% for n in realty %}
+<a href="{% url 'realty_detail' n.id %}">{{ n }}</a><br>
+{% endfor %}
+<div align="center">
+    {% if page_obj.has_previous %}
+        <a href="?page=1">1</a>
+        <a href="?page={{ page_obj.previous_page_number }}"><</a>
+    {% endif %}
+    {{ page_obj.number }}
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">></a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+    {% endif %}
+</div>
+{% endblock %}
+</body>
+</html>

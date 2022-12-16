@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Аналитика{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+<h3>Самые популярные товары за прошедшие сутки</h3>
+{% if first_place %}
+<h4>Первое место: {{ first_place.product.name }}
+    {{ first_place.quantity }}шт. {{ first_place.store.name }}
+    ({{ first_place.product.code }})</h4>
+{% endif %}
+{% if second_place %}
+<h4>Второе место: {{ second_place.product.name }}
+    {{ second_place.quantity }}шт. {{ second_place.store.name }}
+    ({{ second_place.product.code }})</h4>
+{% endif %}
+{% if third_place %}
+<h4>Третье место: {{ third_place.product.name }}
+    {{ third_place.quantity }}шт. {{ third_place.store.name }}
+    ({{ third_place.product.code }})</h4>
+{% endif %}
+{% endblock %}
+</body>
+</html>

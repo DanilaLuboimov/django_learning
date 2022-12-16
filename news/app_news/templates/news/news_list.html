@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новости</title>
+    <style>
+        [hidden]{
+            display: !important;
+        }
+    </style>
+</head>
+<body>
+<div align="center"><a href="{% url 'main' %}">Главная страница</a></div>
+    {% if request.user.is_authenticated and request.path == '/my_news/' %}
+        <h2>Здесь все ваши созданные новости, {{ request.user.username }}</h2>
+    {% elif request.user.is_authenticated %}
+        <h2>Добро пожаловать в мир новостей, {{ request.user.username }}</h2>
+    {% if request.path != '/news_moderation/' and perms.app_news.can_create_new%}
+        <a href="{% url 'new_news' %}">
+            <button type="button">
+                Создать новое объявление
+            </button>
+        </a>
+        <br>
+    {% endif %}
+{% else %}
+    <h2>Вы еще не вошли в систему</h2>
+    <a href="{% url 'login' %}">
+        <button type="submit">Войти</button>
+    </a>
+{% endif %}
+<br><br>
+{% if request.path != '/news_moderation/' %}
+    {% if news %}
+        {% for n in news %}
+            <small>Дата: {{ n.created_at }}</small><br>
+            <big><a href="/news/{{ n.id }}">{{ n.title }}</a></big><br><br>
+        {% endfor %}
+    {% else %}
+        <big>Новостей пока нет</big>
+    {% endif %}
+{% else %}
+    {% for form in forms %}
+        <div>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.create_by }}
+                <input type="hidden" name="id_news" value="{{ form.id }}">
+                <u><b><big>{{ form.title }}</big></b></u>
+                <input type="submit" name="flag_action" value="Опубликовать">
+                <input type="hidden" name="content" value="{{ form.text }}">
+                <br>Автор: {{ form.flag_action.label }}
+                <br><br>{{ form.content.label }}<br><br>
+            </form>
+        </div>
+    {% endfor %}
+{% endif %}
+</body>
+</html>

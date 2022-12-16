@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Личный кабинет{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+<h3>Ваш личный кабинет</h3>
+<div>
+Логин: {{ username }}<br>
+Имя: {{ firstname }}<br>
+Фамилия: {{ lastname }}<br>
+Статус: {{ status.get_status_display }}<br>
+Очков: {{ status.point }}<br>
+Баланс: {{ balance }} рублей<br>
+</div>
+<a href="{% url 'balance' %}"><button>Пополнить баланс</button></a>
+{% endblock %}
+</body>
+</html>

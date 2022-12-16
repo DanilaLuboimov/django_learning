@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ goods|first }}{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+{% for g in goods %}
+    <b>{{ g.product.name }}</b><br>
+    Цена:
+    {% if g.remains %}
+        <b>{{ g.price }}</b><br>
+        {% if request.user.is_authenticated %}
+            <form method="post" action="">
+                {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ g.id }}">
+                <button type="submit">В корзину</button>
+            </form>
+        {% endif %}
+    {% else %}
+        <b>Нет в наличии</b><br>
+    {% endif %}
+Магазин: <b>{{ g.store.name }}</b><br><br>
+{% endfor %}
+{% endblock %}
+</body>
+</html>

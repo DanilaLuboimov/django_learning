@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ article.title }}</title>
+</head>
+<body>
+<p align="center">
+    <a href="{% url 'main' %}">На главную</a>
+    <a href="{% url 'articles' %}">Назад</a>
+</p>
+<h2>{{ article.title }}</h2>
+<div>
+    {{ article.description }}<br><br>
+    {% for image in images %}
+        <img src="/media/{{ image.file }}" width="30%" height="30%"><br>
+    {% endfor %}<br>
+    Автор: {{ article.author }} Дата: {{ article.created_at }}
+</div>
+</body>
+</html>

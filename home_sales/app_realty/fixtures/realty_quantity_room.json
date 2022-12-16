@@ -1,0 +1,51 @@
+[
+{
+    "model": "app_realty.quantityroom",
+    "pk": 1,
+    "fields": {
+        "quantity": "1к"
+    }
+},
+{
+    "model": "app_realty.quantityroom",
+    "pk": 2,
+    "fields": {
+        "quantity": "2к"
+    }
+},
+{
+    "model": "app_realty.quantityroom",
+    "pk": 3,
+    "fields": {
+        "quantity": "3к"
+    }
+},
+{
+    "model": "app_realty.quantityroom",
+    "pk": 4,
+    "fields": {
+        "quantity": "4к"
+    }
+},
+{
+    "model": "app_realty.quantityroom",
+    "pk": 5,
+    "fields": {
+        "quantity": "5к"
+    }
+},
+{
+    "model": "app_realty.quantityroom",
+    "pk": 6,
+    "fields": {
+        "quantity": "6к"
+    }
+},
+{
+    "model": "app_realty.quantityroom",
+    "pk": 7,
+    "fields": {
+        "quantity": "С"
+    }
+}
+]

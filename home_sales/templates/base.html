@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<div align="center">
+  {% if request.path != "/" %}
+    <a href="{% url 'main' %}">Главная страница</a>
+  {% endif %}
+  {% if request.path != "/news/" %}
+    <a href="{% url 'news_list' %}">Новости</a>
+  {% endif %}
+  {% if request.path != "/realty/" %}
+    <a href="{% url 'realty_list' %}">Недвижимость</a>
+  {% endif %}<br>
+  {% if request.path != "/about/" %}
+    <a href="{% url 'about' %}">О нас</a>
+  {% endif %}
+  {% if request.path != "/contacts/" %}
+    <a href="{% url 'contacts' %}">Контакты</a>
+  {% endif %}
+</div>
+
+{% block content %}
+{% endblock %}
+</body>
+</html>

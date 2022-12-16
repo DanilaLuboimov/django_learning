@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+</head>
+<body>
+<p align="center">
+    <a href="{% url 'main' %}">На главную</a>
+</p>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p}}
+    <button type="submit">Обновить</button>
+</form>
+</body>
+</html>

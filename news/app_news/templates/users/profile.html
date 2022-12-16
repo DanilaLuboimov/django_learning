@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+</head>
+<body>
+<div align="center"><a href="{% url 'main' %}">Главная страница</a></div>
+<div align="left">
+    <table border="1">
+        <tr><td>Username</td><td>{{ request.user.username }}</td></tr>
+        <tr><td>Имя</td><td>{{ request.user.first_name }}</td></tr>
+        <tr><td>Фамилия</td><td>{{ request.user.last_name }}</td></tr>
+        <tr><td>Номер телефона</td><td>{{ request.user.profile.phone_number }}</td></tr>
+        <tr><td>Город</td><td>{{ request.user.profile.city }}</td></tr>
+        <tr><td>Верификация</td><td>
+            {% if request.user.profile.is_verification %}
+                ✔️
+            {% else %}
+                ❌
+            {% endif %}
+        </td></tr>
+        <tr><td>Количество опубликованных<br>новостей</td>
+            <td><a href="{% url 'my_news' %}">{{ request.user.profile.counter_news }}</a></td></tr>
+        <tr><td>Дата создания</td><td>{{ request.user.date_joined }}</td></tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% load casual_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+<div align="center">
+    <a href="{% url 'main' %}">Главная страница</a>
+    <a href="{% url 'search' %}">Товары</a>
+    <br>
+    {% if not request.user.is_authenticated %}
+        <a href="{% url 'login' %}">Вход</a>
+        <a href="{% url 'register' %}">Регистрация</a>
+    {% else %}
+        <a href="{% url 'account' %}">Личный кабинет</a>
+        <a href="{% url 'logout' %}">Выход</a>
+    {% endif %}
+    <br><a href="{% url 'analytics' %}">Самые популярные товары вчера</a>
+</div>
+{% if request.user.is_authenticated %}
+    <div align="right">
+        <a href="{% url 'basket' %}">🛒 {% sum_price request.user %} рублей</a>
+    </div>
+{% endif %}
+{% block content %}{% endblock %}
+</body>
+</html>

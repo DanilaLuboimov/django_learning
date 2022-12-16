@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ news.title }}</title>
+</head>
+<body>
+<div align="center"><a href="{% url 'main' %}">Главная страница</a></div>
+<h2>{{ news.title }}</h2>
+<div>
+    Дата: {{ news.created_at }}
+    {% if  news.update_at != news.created_at %}
+        Обновлено: {{ news.update_at }}
+    {% endif %}
+    <br><br>
+    {{ news.content }}<br><br>
+    Автор: {{ news.create_by.user.username}}<br>
+    {% if request.user.is_authenticated %}
+        <a href="/news/{{ news.id }}/edit">
+            <button type="button">Редактировать</button>
+        </a>
+    {% endif %}
+</div>
+<hr>
+{% if comment_list %}
+    <h3>Комментарии:</h3>
+    {% for comment in comment_list %}
+        <p>
+            {% if comment.user_id != None %}
+                <b>{{ comment.username }}:</b>
+            {% else %}
+                <b>Гость({{comment.username}})</b>
+            {% endif %}
+            <br>{{ comment.text }}<br>
+        </p>
+    {% endfor %}
+{% else %}
+        <h3>Комментариев пока нет</h3>
+        <br>
+{% endif %}
+<br>
+<div>
+        Оставь комментарий,
+     {% if request.user.username %}
+        {{ request.user.username }}:<br>
+    {% else %}
+        Гость:
+    {% endif %}<br>
+    <form method="post" action="">
+        {% csrf_token %}
+        {% if request.user.is_authenticated %}
+            <input type="hidden" name="username"
+                   value="{{ request.user.username }}">
+            <input type="hidden" name="user_id"
+                   value="{{ user_id }}">
+            {{ comment_form.text.label }}:
+            {{ comment_form.text }}
+        {% else %}
+            {{ comment_form.as_p }}
+        {% endif %}
+        <button type="submit">Оставить комментарий</button>
+    </form>
+</div>
+</body>
+</html>

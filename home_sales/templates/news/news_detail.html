@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ news }}{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+<div>
+  <h3>{{ news.title }}</h3>
+  <small>{{ news.date_created }}</small><br>
+  {{ news.text }}
+</div>
+{% endblock %}
+</body>
+</html>

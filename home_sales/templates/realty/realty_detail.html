@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ realty.address }}{% endblock %}</title>
+</head>
+<body>
+{% block content %}
+<h3>{{ realty }}</h3>
+Адрес: {{ realty.address }}<br>
+Цена: {% widthratio realty.price_per_metre 1 realty.square %} рублей<br>
+Площадь: {{ realty.square }}<br>
+Цена за метр: {{ realty.price_per_metre }}<br>
+Тип недвижимости: {{ realty.space_type }}<br>
+Количество комнат: {{ realty.quantity_room }}<br>
+Этаж: {{ realty.floor }}/{{ realty.max_floor }}<br>
+{% endblock %}
+</body>
+</html>
